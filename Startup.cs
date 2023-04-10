@@ -71,7 +71,7 @@ namespace INTEX2
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFile
+            app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseRouting();
 
