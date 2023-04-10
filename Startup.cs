@@ -45,6 +45,14 @@ namespace INTEX2
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 10;
             });
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                // requires using Microsoft.AspNetCore.Http;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,9 +71,8 @@ namespace INTEX2
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-
+            app.UseStaticFile
+            app.UseCookiePolicy();
             app.UseRouting();
 
             app.UseAuthentication();
