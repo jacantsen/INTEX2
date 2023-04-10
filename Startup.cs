@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace INTEX2
 {
@@ -45,7 +46,18 @@ namespace INTEX2
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 10;
             });
-            services.Configure<CookiePolicyOptions>(options =>
+            
+            services.AddAuthentication()
+           .AddGoogle(options =>
+           {
+               IConfigurationSection googleAuthNSection =
+                   Configuration.GetSection("Authentication:Google");
+
+               options.ClientId = googleAuthNSection["ClientId"];
+               options.ClientSecret = googleAuthNSection["ClientSecret"];
+           });
+           
+           services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
                 // cookies is needed for a given request.
