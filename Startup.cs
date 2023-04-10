@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace INTEX2
 {
@@ -44,6 +45,16 @@ namespace INTEX2
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 10;
             });
+
+            services.AddAuthentication()
+           .AddGoogle(options =>
+           {
+               IConfigurationSection googleAuthNSection =
+                   Configuration.GetSection("Authentication:Google");
+
+               options.ClientId = googleAuthNSection["ClientId"];
+               options.ClientSecret = googleAuthNSection["ClientSecret"];
+           });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
