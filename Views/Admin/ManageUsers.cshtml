@@ -1,0 +1,42 @@
+﻿@model IList<IdentityUser>
+@using Microsoft.AspNetCore.Identity
+
+<h2>Manage Users</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    <form asp-controller="Admin" asp-action="UpdateUserRole" method="post">
+                        <input type="hidden" name="userId" value="@user.Id" />
+
+                        <select name="roleName">
+                            <option value="@ViewBag.UserRoles[user.Id]" selected>@ViewBag.UserRoles[user.Id]</option>
+                            @foreach (var role in ViewBag.Roles)
+                            {
+                                if (ViewBag.UserRoles[user.Id] != role.Name)
+                                {
+                                    <option value="@role.Name">@role.Name</option>
+                                }
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-primary">Update Role</button>
+                    </form>
+                </td>
+                <td>
+                    <!-- You can add more actions here, such as delete user or reset password -->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
