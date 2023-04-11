@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,9 @@ namespace INTEX2
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddDbContext<RDSDbContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("RDSConnection")));
 
             //services.AddIdentity<IdentityUser, IdentityRole>()
             //.AddEntityFrameworkStores<ApplicationDbContext>()
