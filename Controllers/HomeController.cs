@@ -33,5 +33,25 @@ namespace INTEX2.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult GDPR_Notice()
+        {
+            return View();
+        }
+        public IActionResult Burial_summary()
+        {
+            return View();
+        }
+        public IActionResult Burial_prediction()
+        {
+            return View();
+        }
+        public IActionResult Analysis()
+        {
+            return View();
+        }
+        public IActionResult Admin()
+        {
+            return View();
+        }
     }
 }
