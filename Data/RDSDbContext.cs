@@ -7,7 +7,5 @@ public class RDSDbContext : DbContext
         : base(options)
     {
     }
-
-    public DbSet<index2> YourModels { get; set; } // Replace 'YourModel' with the name of a model class representing a table in your RDS PostgreSQL database
-    // ... add more DbSet properties for other tables ...
+    public DbSet<Mummy> Mummies { get; set; } 
 }
