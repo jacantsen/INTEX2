@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @*            @foreach (var mummy in Model)
+                @foreach (var mummy in Model)
                 {
                     <tr>
                         @foreach (var prop in typeof(Mummy).GetProperties())
@@ -32,7 +32,7 @@
                             <td>@prop.GetValue(mummy)</td>
                         }
                     </tr>
-                }*@
+                }
         </tbody>
     </table>
 </div>
