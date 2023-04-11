@@ -12,8 +12,11 @@ namespace INTEX2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public Mummy mummy { get; set; }
-
+        private IMummyRepository repo;
+        public HomeController(IMummyRepository temp)
+        {
+            repo = temp;
+        }
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
