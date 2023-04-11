@@ -2,7 +2,9 @@
 @{
     ViewData["Title"] = "Burial Summary";
 }
-@model IEnumerable<Mummy>
+@*@model IEnumerable<Mummy>*@
+@model IEnumerable<INTEX2.Models.Mummy>
+
 
 
 <h1>Mummies</h1>
@@ -10,6 +12,7 @@
 {
     <a asp-controller="Home" asp-action="Add_mummy">Add a burial record here</a>
 }
+
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
         <thead>
@@ -23,6 +26,7 @@
         <tbody>
             @foreach (var mummy in Model)
             {
+
                 <tr>
                     @foreach (var prop in typeof(Mummy).GetProperties())
                     {
@@ -32,4 +36,15 @@
             }
         </tbody>
     </table>
+    
+  
 </div>
+
+@*@foreach (var mummy in Model)
+{
+    <div>
+        <h2>@mummy.Wrapping </h2>
+        <!-- Display other properties of the mummy -->
+    </div>
+}
+*@
