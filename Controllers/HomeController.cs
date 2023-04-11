@@ -12,7 +12,11 @@ namespace INTEX2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        private IMummyRepository repo;
+        public HomeController(IMummyRepository temp)
+        {
+            repo = temp;
+        }
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -37,10 +41,12 @@ namespace INTEX2.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Burial_summary()
         {
             return View();
         }
+
         public IActionResult Burial_prediction()
         {
             return View();
@@ -49,9 +55,10 @@ namespace INTEX2.Controllers
         {
             return View();
         }
-        public IActionResult Admin()
+        public IActionResult Add_mummy()
         {
             return View();
         }
+
     }
 }
