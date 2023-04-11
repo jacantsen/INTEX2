@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Google;
-
+using INTEX2.Models;
 
 namespace INTEX2
 {
@@ -42,7 +42,7 @@ namespace INTEX2
             //services.AddIdentity<IdentityUser, IdentityRole>()
             //.AddEntityFrameworkStores<ApplicationDbContext>()
             //.AddDefaultTokenProviders();
-
+            services.AddScoped<IMummyRepository, EFMummyRepository>();
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AuthenticatedUserOnly", policy => policy.RequireRole("AuthenticatedUser"));

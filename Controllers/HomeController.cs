@@ -17,10 +17,6 @@ namespace INTEX2.Controllers
         {
             repo = temp;
         }
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
 
         public IActionResult Index()
         {
@@ -44,7 +40,10 @@ namespace INTEX2.Controllers
         [HttpGet]
         public IActionResult Burial_summary()
         {
-            return View();
+            var x = repo.Mummies.ToArray();
+
+
+            return View(x);
         }
 
         public IActionResult Burial_prediction()

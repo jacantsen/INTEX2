@@ -2,11 +2,8 @@
 @{
     ViewData["Title"] = "Burial Summary";
 }
-@model IEnumerable<INTEX2.Models.Mummy>
+@model IEnumerable<Mummy>
 
-@{
-    ViewData["Title"] = "Mummies";
-}
 
 <h1>Mummies</h1>
 @if (User.IsInRole("Admin"))
@@ -24,15 +21,15 @@
             </tr>
         </thead>
         <tbody>
-                @foreach (var mummy in Model)
-                {
-                    <tr>
-                        @foreach (var prop in typeof(Mummy).GetProperties())
-                        {
-                            <td>@prop.GetValue(mummy)</td>
-                        }
-                    </tr>
-                }
+            @foreach (var mummy in Model)
+            {
+                <tr>
+                    @foreach (var prop in typeof(Mummy).GetProperties())
+                    {
+                        <td>@prop.GetValue(mummy)</td>
+                    }
+                </tr>
+            }
         </tbody>
     </table>
 </div>
