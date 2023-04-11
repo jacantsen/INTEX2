@@ -9,42 +9,40 @@ namespace INTEX2.Models
     public class Mummy
     {
         [Key]
-        public int id { get; set; }
-        public string FieldBookExcavationYear { get; set; }
-        public string FieldBookPage { get; set; }
-        public string DataExpertInitials { get; set; }
-        public string SquareNorthSouth { get; set; }
-        public string NorthSouth { get; set; }
-        public string SquareEastWest { get; set; }
-        public string EastWest { get; set; }
-        public string Area { get; set; }
-        public string BurialNumber { get; set; }
-        public string WestToHead { get; set; }
-        public string WestToFeet { get; set; }
-        public string SouthToHead { get; set; }
-        public string SouthToFeet { get; set; }
-        public string Depth { get; set; }
-        public string Length { get; set; }
-        public string HeadDirection { get; set; }
-        public string Preservation { get; set; }
-        public string Wrapping { get; set; }
-        public string AdultSubadult { get; set; }
-        public string Sex { get; set; }
-        public string AgeAtDeath { get; set; }
-        public string HairColor { get; set; }
-        public string SamplesCollected { get; set; }
-        public string Goods { get; set; }
-        public string FaceBundles { get; set; }
-        public string Text { get; set; }
-        public string BurialId { get; set; }
-        public string Photos { get; set; }
-        public string DateOfExcavation { get; set; }
-        public string ShaftNumber { get; set; }
-        public string ClusterNumber { get; set; }
-        public string BurialMaterials { get; set; }
-        public string ExcavationRecorder { get; set; }
-        public string Hair { get; set; }
-
-
+        public long id { get; set; }
+        public string fieldbookexcavationyear { get; set; }
+        public string fieldbookpage { get; set; }
+        public string dataexpertinitials { get; set; }
+        public string squarenorthsouth { get; set; }
+        public string northsouth { get; set; }
+        public string squareeastwest { get; set; }
+        public string eastwest { get; set; }
+        public string area { get; set; }
+        public string burialnumber { get; set; }
+        public string westtohead { get; set; }
+        public string westtofeet { get; set; }
+        public string southtohead { get; set; }
+        public string southtofeet { get; set; }
+        public string depth { get; set; }
+        public string length { get; set; }
+        public string headdirection { get; set; }
+        public string preservation { get; set; }
+        public string wrapping { get; set; }
+        public string adultsubadult { get; set; }
+        public string sex { get; set; }
+        public string ageatdeath { get; set; }
+        public string haircolor { get; set; }
+        public string samplescollected { get; set; }
+        public string goods { get; set; }
+        public string facebundles { get; set; }
+        public string text { get; set; }
+        public string burialid { get; set; }
+        public string photos { get; set; }
+        public string dateofexcavation { get; set; }
+        public string shaftnumber { get; set; }
+        public string clusternumber { get; set; }
+        public string burialmaterials { get; set; }
+        public string excavationrecorder { get; set; }
+        public string hair { get; set; }
     }
 }

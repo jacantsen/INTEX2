@@ -41,8 +41,6 @@ namespace INTEX2.Controllers
         public IActionResult Burial_summary()
         {
             var x = repo.Mummies.ToArray();
-
-
             return View(x);
         }
 

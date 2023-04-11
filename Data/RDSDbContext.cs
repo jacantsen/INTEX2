@@ -7,5 +7,10 @@ public class RDSDbContext : DbContext
         : base(options)
     {
     }
-    public DbSet<Mummy> Mummies { get; set; } 
+    public DbSet<Mummy> Mummies { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Mummy>().ToTable("burialmain");
+    }
 }
