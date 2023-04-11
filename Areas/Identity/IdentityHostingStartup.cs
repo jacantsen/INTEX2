@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using INTEX2.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;

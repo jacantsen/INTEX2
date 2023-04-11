@@ -37,5 +37,21 @@ namespace INTEX2.Controllers
         {
             return View();
         }
+        public IActionResult Burial_summary()
+        {
+            return View();
+        }
+        public IActionResult Burial_prediction()
+        {
+            return View();
+        }
+        public IActionResult Analysis()
+        {
+            return View();
+        }
+        public IActionResult Admin()
+        {
+            return View();
+        }
     }
 }
