@@ -22,24 +22,36 @@
                 {
                     <th>@prop.Name</th>
                 }
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>Edit</th>
+                    <th>Delete</th>
+                }
             </tr>
         </thead>
         <tbody>
             @foreach (var mummy in Model.Mummies)
             {
 
-                <tr>
-                    @foreach (var prop in typeof(Mummy).GetProperties())
-                    {
-                        <td>@prop.GetValue(mummy)</td>
-                    }
-                </tr>
+            <tr>
+                @foreach (var prop in typeof(Mummy).GetProperties())
+                {
+                    <td>@prop.GetValue(mummy)</td>
+
+                }
+                @if (User.IsInRole("Admin"))
+                {
+            <td><a asp-controller="Home" asp-action="Edit_burialmain" asp-route-id="@mummy.id">Edit</a></td>
+                    <td><button>Delete</button></td>
+                }
+            </tr>
             }
         </tbody>
     </table>
 
 
 </div>
+
 
 
 
