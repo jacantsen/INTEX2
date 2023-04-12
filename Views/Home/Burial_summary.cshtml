@@ -12,8 +12,8 @@
     <h1 class="titular">Mummies</h1>
     <!--<button id="filterBtn" class="filter-btn-mum">Filter</button>-->
     <div id="filterBtn" class="filter-btn-mum">Filter</div>
-    <div style="margin-left: auto; > 
-        <a asp-action="ResetFilter" class="btn btn-danger">Reset</a>
+    <div style="margin-left: auto;" > 
+        <a asp-action="ResetFilter" asp-controller="Home" class="btn btn-danger">Reset</a>
     </div>
     @if (User.IsInRole("Admin"))
     {
@@ -116,8 +116,14 @@
                     <tr>
                         @if (User.IsInRole("Admin"))
                         {
-                            <td><a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a></td>
-                            <td><button>Delete</button></td>
+                            <td>
+                                <a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a>
+                            </td>
+                            <td>
+                                    <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" onsubmit="return confirmDelete();">
+                                        <a type="submit" class="btn">Delete</a>
+                                    </form>
+                            </td>
                         }
                         @foreach (var prop in typeof(Mummy).GetProperties())
                         {
@@ -145,6 +151,9 @@
 
 </div>
 
-
-
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this record?');
+    }
+</script>
 
