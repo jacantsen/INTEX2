@@ -41,7 +41,7 @@
                 }
                 @if (User.IsInRole("Admin"))
                 {
-            <td><a asp-controller="Home" asp-action="Edit_burialmain" asp-route-id="@mummy.id">Edit</a></td>
+            <td><a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a></td>
                     <td><button>Delete</button></td>
                 }
             </tr>
