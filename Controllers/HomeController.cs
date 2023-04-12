@@ -160,8 +160,8 @@ namespace INTEX2.Controllers
         public IActionResult Edit_burialmain(long id, Mummy mummy)
 
         {
-            //var mummyToUpdate = repo.GetMummyById(id);
-            var mummyToUpdate = repo.Mummies.SingleOrDefault(x => x.id == id);
+            var mummyToUpdate = repo.GetMummyById(id);
+            //var mummyToUpdate = repo.Mummies.SingleOrDefault(x => x.id == id);
             if (mummyToUpdate != null)
             {
                 mummyToUpdate.fieldbookexcavationyear = mummy.fieldbookexcavationyear;
