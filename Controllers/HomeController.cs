@@ -1,4 +1,5 @@
 ﻿using INTEX2.Models;
+using INTEX2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -44,9 +45,29 @@ namespace INTEX2.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Burial_summary()
+        public IActionResult Burial_summary(int pageNum = 1)
         {
-            var x = _context.Mummies.ToArray();
+
+            int pageSize = 10;
+
+            var x = new MummiesViewModel
+            {
+                Mummies = repo.Mummies
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumRecords = repo.Mummies.Count(),
+                    RecordsPerPage = pageSize,
+                    CurrentPage = pageNum,
+                    
+                }
+
+            };
+
+            
+
             return View(x);
         }
 
