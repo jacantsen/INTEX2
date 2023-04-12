@@ -40,12 +40,18 @@ namespace INTEX2.Infrastructure
         public string PageClassNormal { get; set; }
         public string PageClassSelected { get; set; }
 
+        //Adding a Next and Previous Button
+        public string PrevPageText { get; set; } = "Previous";
+        public string NextPageText { get; set; } = "Next";
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             var urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
 
             var startPage = 1;
             var endPage = PageModel.TotalPages;
+
+
 
             // Limit the number of pages displayed
             if (PageModel.TotalPages > PageMax)
@@ -67,11 +73,22 @@ namespace INTEX2.Infrastructure
 
             var divTag = new TagBuilder("div");
 
+            // Add Previous button if we're not on the first page
+            if (PageModel.CurrentPage > 1)
+            {
+                var prevTag = new TagBuilder("a");
+                prevTag.Attributes["href"] = urlHelper.Action(PageAction, new { pageNum = PageModel.CurrentPage - 1 });
+                prevTag.InnerHtml.AppendHtml(PrevPageText);
+                divTag.InnerHtml.AppendHtml(prevTag);
+            }
+
             for (int i = startPage; i <= endPage; i++)
             {
                 var aTag = new TagBuilder("a");
 
                 aTag.Attributes["href"] = urlHelper.Action(PageAction, new { pageNum = i });
+
+
 
                 if (PageClassesEnabled)
                 {
@@ -90,6 +107,15 @@ namespace INTEX2.Infrastructure
                 aTag.InnerHtml.Append(i.ToString());
 
                 divTag.InnerHtml.AppendHtml(aTag);
+            }
+
+            // Add "Next" button
+            if (PageModel.CurrentPage < PageModel.TotalPages)
+            {
+                var nextTag = new TagBuilder("a");
+                nextTag.Attributes["href"] = urlHelper.Action(PageAction, new { pageNum = PageModel.CurrentPage + 1 });
+                nextTag.InnerHtml.Append(NextPageText);
+                divTag.InnerHtml.AppendHtml(nextTag);
             }
 
             output.Content.AppendHtml(divTag.InnerHtml);
