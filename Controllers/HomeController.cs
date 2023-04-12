@@ -55,7 +55,7 @@ namespace INTEX2.Controllers
         public IActionResult ResetFilter()
         {
             TempData["search"] = null;
-            return RedirectToAction("Burial_summary");
+            return RedirectToAction("Burial_summary", new { pageNum = 1 });
         }
 
         [HttpGet]
@@ -146,6 +146,26 @@ namespace INTEX2.Controllers
         {
             return View();
         }
+
+        //delete method
+        [HttpPost]
+        public IActionResult Delete_burialmain(long mummy_id)
+        {
+            var mummyToDelete = repo.Mummies.SingleOrDefault(x => x.id == mummy_id);
+
+            if (mummyToDelete != null)
+            {
+                // Delete the mummy from the repository
+                repo.DeleteMummy(mummyToDelete);
+
+                // Save changes (if required by the repository implementation)
+                // repo.SaveChanges(); // Uncomment this line if your repository implementation requires it
+            }
+
+            return RedirectToAction("Burial_summary");
+        }
+
+
 
         [HttpGet("Edit_burialmain/{mummy_id}")]
         public IActionResult Edit_burialmain(long mummy_id)
