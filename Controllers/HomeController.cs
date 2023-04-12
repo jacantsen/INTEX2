@@ -1,4 +1,5 @@
 ﻿using INTEX2.Models;
+using INTEX2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -13,12 +14,18 @@ namespace INTEX2.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        
+
+
         private IMummyRepository repo;
-        public HomeController(IMummyRepository temp)
+        public HomeController(IMummyRepository context)
+        {
+            repo = context;
+        }
+/*        public HomeController(IMummyRepository temp)
         {
             repo = temp;
-        }
+        }*/
 
         public IActionResult Index()
         {
@@ -40,11 +47,32 @@ namespace INTEX2.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Burial_summary()
+        public IActionResult Burial_summary(int pageNum = 1)
         {
-            var x = repo.Mummies.ToArray();
+
+            int pageSize = 10;
+
+            var x = new MummiesViewModel
+            {
+                Mummies = repo.Mummies
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumRecords = repo.Mummies.Count(),
+                    RecordsPerPage = pageSize,
+                    CurrentPage = pageNum,
+
+                }
+
+            };
+
+
+
             return View(x);
         }
+
 
         [HttpPost]
         public IActionResult Burial_summary(SearchSpecifications search)
@@ -103,6 +131,63 @@ namespace INTEX2.Controllers
         {
             return View();
         }
+
+        [HttpGet("{mummy_id}")]
+        public IActionResult Edit_burialmain(long mummy_id)
+        {
+            var mummy_data = repo.Mummies.SingleOrDefault(x => x.id == mummy_id);
+            return View("Edit_burialmain",mummy_data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit_burialmain(long id , [Bind("fieldbookexcavationyear, fieldbookpage, dataexpertinitials, squarenorthsouth, northsouth, squareeastwest, eastwest, area, burialnumber, westtohead, westtofeet, southtohead, southtofeet, depth, length, headdirection, preservation, wrapping, adultsubadult, sex, ageatdeath, haircolor, samplescollected, goods, facebundles, text, burialid, photos, dateofexcavation, shaftnumber, clusternumber, burialmaterials, excavationrecorder, hair")] Mummy mummy)
+        {
+            //var mummyToUpdate = repo.GetMummyById(id);
+            var mummyToUpdate = repo.Mummies.SingleOrDefault(x => x.id == id);
+            if (mummyToUpdate != null)
+            {
+                mummyToUpdate.fieldbookexcavationyear = mummy.fieldbookexcavationyear;
+                mummyToUpdate.fieldbookpage = mummy.fieldbookpage;
+                mummyToUpdate.dataexpertinitials = mummy.dataexpertinitials;
+                mummyToUpdate.squarenorthsouth = mummy.squarenorthsouth;
+                mummyToUpdate.northsouth = mummy.northsouth;
+                mummyToUpdate.squareeastwest = mummy.squareeastwest;
+                mummyToUpdate.eastwest = mummy.eastwest;
+                mummyToUpdate.area = mummy.area;
+                mummyToUpdate.burialnumber = mummy.burialnumber;
+                mummyToUpdate.westtohead = mummy.westtohead;
+                mummyToUpdate.westtofeet = mummy.westtofeet;
+                mummyToUpdate.southtohead = mummy.southtohead;
+                mummyToUpdate.southtofeet = mummy.southtofeet;
+                mummyToUpdate.depth = mummy.depth;
+                mummyToUpdate.length = mummy.length;
+                mummyToUpdate.headdirection = mummy.headdirection;
+                mummyToUpdate.preservation = mummy.preservation;
+                mummyToUpdate.wrapping = mummy.wrapping;
+                mummyToUpdate.adultsubadult = mummy.adultsubadult;
+                mummyToUpdate.sex = mummy.sex;
+                mummyToUpdate.ageatdeath = mummy.ageatdeath;
+                mummyToUpdate.haircolor = mummy.haircolor;
+                mummyToUpdate.samplescollected = mummy.samplescollected;
+                mummyToUpdate.goods = mummy.goods;
+                mummyToUpdate.facebundles = mummy.facebundles;
+                mummyToUpdate.text = mummy.text;
+                mummyToUpdate.burialid = mummy.burialid;
+                mummyToUpdate.photos = mummy.photos;
+                mummyToUpdate.dateofexcavation = mummy.dateofexcavation;
+                mummyToUpdate.shaftnumber = mummy.shaftnumber;
+                mummyToUpdate.clusternumber = mummy.clusternumber;
+                mummyToUpdate.burialmaterials = mummy.burialmaterials;
+                mummyToUpdate.excavationrecorder = mummy.excavationrecorder;
+                mummyToUpdate.hair = mummy.hair;
+
+                repo.UpdateMummy(mummyToUpdate);
+            }
+
+            return RedirectToAction("Burial_summary");
+        }
+
 
     }
 }

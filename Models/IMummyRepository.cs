@@ -4,6 +4,11 @@ namespace INTEX2.Models
 {
     public interface IMummyRepository
     {
-        IQueryable<Mummy> Mummies { get; }
+        IQueryable<Mummy> Mummies { get;}
+
+        Mummy GetMummyById(long id);
+
+        void UpdateMummy(Mummy mummy);
+        // void AddMummy(Mummy mummy);
     }
 }

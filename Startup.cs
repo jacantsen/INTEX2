@@ -113,6 +113,9 @@ namespace INTEX2
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default2",
+                    pattern: "{controller=Admin}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

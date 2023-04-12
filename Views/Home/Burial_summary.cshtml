@@ -1,11 +1,12 @@
-﻿
 @{
     ViewData["Title"] = "Burial Summary";
 }
-@*@model IEnumerable<Mummy>*@
-@model IEnumerable<INTEX2.Models.Mummy>
+
+@*@model IEnumerable<Mummy>
+@model IEnumerable<INTEX2.Models.Mummy>*@
 <link href="~/css/site.css" rel="stylesheet" />
 
+@model MummiesViewModel
 
 <div class="header-container-mum">
     <h1 class="titular">Mummies</h1>
@@ -92,27 +93,37 @@
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
                 <thead>
-                    <tr>
+                     <tr>
                         @foreach (var prop in typeof(Mummy).GetProperties())
                         {
                             <th>@prop.Name</th>
                         }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        }
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var mummy in Model)
+                    @foreach (var mummy in Model.Mummies)
                     {
 
-                        <tr>
-                            @foreach (var prop in typeof(Mummy).GetProperties())
-                            {
-                                <td>@prop.GetValue(mummy)</td>
-                            }
-                        </tr>
+                    <tr>
+                        @foreach (var prop in typeof(Mummy).GetProperties())
+                        {
+                            <td>@prop.GetValue(mummy)</td>
+
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                    <td><a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a></td>
+                            <td><button>Delete</button></td>
+                        }
+                    </tr>
                     }
                 </tbody>
             </table>
-    
   
         </div>
     </div>
@@ -121,3 +132,12 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+<div page-model="@Model.PageInfo" page-action="Burial_summary" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" class="text-center">
+
+</div>
+
+
