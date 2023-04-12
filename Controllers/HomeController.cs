@@ -149,7 +149,7 @@ namespace INTEX2.Controllers
 
         //delete method
         [HttpPost]
-        public IActionResult Delete_burialmain( long mummy_id)
+        public IActionResult Delete_burialmain(long mummy_id)
         {
             var mummyToDelete = repo.Mummies.SingleOrDefault(x => x.id == mummy_id);
 
