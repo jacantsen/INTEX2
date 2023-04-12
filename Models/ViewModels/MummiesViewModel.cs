@@ -9,5 +9,7 @@ namespace INTEX2.Models.ViewModels
     {
         public IQueryable<Mummy>Mummies { get; set; }
         public PageInfo PageInfo { get; set; }
+        public SearchSpecifications Search { get; set; }
+        public Char Check { get; set; }
     }
 }
