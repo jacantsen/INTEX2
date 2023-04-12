@@ -69,3 +69,163 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/* filter navbar styles
+-------------------------------------------------- */
+
+.header-container-mum {
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.titular {
+    text-align:center;
+}
+
+.containment {
+    display: flex;
+    /*padding-right: 15px;
+    padding-left: 15px;*/
+    width: 110%;
+    margin-left: -5%;
+    /*margin-right: revert;
+    margin-right: revert;*/
+}
+
+.left-column-mum {
+    /* Adjust the width to your preference */
+    width: 16%;
+    /* Set the background color of the left column */
+    background-color: #f0f0f0;
+    /* Add some padding to the left column */
+    position: absolute;
+    padding: 15px;
+    margin-left: 10px;
+    left: -30%; /* Use the same percentage width as defined above */
+    /*    height: 100%;*/
+    overflow-y: auto;
+    z-index: 999;
+    transition: left 1s;
+}
+
+.mid-column-mum {
+    width: 1%
+}
+
+.content-mum {
+    /* Adjust the width to your preference */
+    width: 100%;
+    transition: margin-left .5s;
+}
+
+.filter-input-mum {
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+/*.filter-btn-mum {
+    float: left;
+    top: 10px;
+    left: 10px;
+    margin-bottom: 30px;
+    width: 100px;
+    position: relative;
+    transition: left 1s;
+}*/
+
+.filter-btn-mum {
+    float: left;
+    top: 10px;
+    box-shadow: 2px 2px;
+    left: 10px;
+    margin-bottom: 30px;
+    width: 100px;
+    height: 30px; /* Add this line to set the height of the box */
+    position: relative;
+    transition: left 1s;
+    background-color: #ccc; /* Add this line to set the background color to gray */
+    display: flex; /* Add this line to center the text in the box */
+    justify-content: center; /* Add this line to center the text horizontally */
+    align-items: center; /* Add this line to center the text vertically */
+    cursor: pointer; /* Add this line to change the cursor to a pointer on hover */
+    user-select: none; /* Add this line to disable text selection */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add this line to create a shadow */
+}
+
+.filter-btn-mum:active {
+    transform: translateY(2px); /* Add this line to create a push-down effect on click */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add this line to adjust the shadow on click */
+}
+
+.hide-btn-mum {
+    float: left;
+    top: 10px;
+    box-shadow: 2px 2px;
+    left: -100%;
+    margin-bottom: 30px;
+    width: 150px;
+    height: 30px;
+    position: relative;
+    transition: left 1s;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hide-btn-mum:active {
+    transform: translateY(2px); /* Add this line to create a push-down effect on click */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add this line to adjust the shadow on click */
+}
+
+.main-content-mum {
+    transition: margin-left .5s;
+}
+
+.sidebar-open-mum .left-column-mum {
+    left: 0;
+}
+
+.sidebar-open-mum .main-content-mum {
+    margin-left: 16%; /* Use the same width as defined in .left-column */
+}
+
+.sidebar-open-mum .content-mum { /* Change this line */
+    margin-left: 16%;
+    width: 83%; /* Use the same width as defined in .left-column */
+}
+
+.sidebar-open-mum .filter-btn-mum { 
+    left: -50%;
+    
+}
+
+.sidebar-open-mum .hide-btn-mum {
+    left:  -150px;
+}
+/* Radio Button
+-------------------------------------------------- */
+.toggle-switch {
+    display: inline-flex;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+
+.switch-option {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+    .switch-option.active {
+        background-color: lightblue;
+    }
