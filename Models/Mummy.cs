@@ -44,5 +44,9 @@ namespace INTEX2.Models
         public string burialmaterials { get; set; }
         public string excavationrecorder { get; set; }
         public string hair { get; set; }
+
+        //connects to Textile
+
+        public ICollection<BurialMain_Textile> BurialMain_Textile { get; set; }
     }
 }
