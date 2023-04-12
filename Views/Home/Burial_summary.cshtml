@@ -8,11 +8,11 @@
 
 @model MummiesViewModel
 
-<div class="header-container-mum" style="display: flex;">
+<div class="header-container-mum" >
     <h1 class="titular">Mummies</h1>
     <!--<button id="filterBtn" class="filter-btn-mum">Filter</button>-->
     <div id="filterBtn" class="filter-btn-mum">Filter</div>
-    <div style="margin-left: auto;"> 
+    <div style="margin-left: auto; > 
         <a asp-action="ResetFilter" class="btn btn-danger">Reset</a>
     </div>
     @if (User.IsInRole("Admin"))

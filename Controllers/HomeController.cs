@@ -127,30 +127,6 @@ namespace INTEX2.Controllers
         [HttpPost]
         public IActionResult Burial_summary(SearchSpecifications search)
         {
-            //var results = repo.Mummies.AsQueryable();
-
-            //var filteredResults = results.ToArray();
-
-            //int pageSize = 10;
-            //var y = new MummiesViewModel
-            //{
-            //    Mummies = results
-            //    .Skip((pageNum - 1) * pageSize)
-            //    .Take(pageSize),
-
-            //    PageInfo = new PageInfo
-            //    {
-            //        TotalNumRecords = results.Count(),
-            //        RecordsPerPage = pageSize,
-            //        CurrentPage = pageNum,
-            //    },
-            //    Search = search,
-            //    Check = 'Q'
-
-            //};
-
-            // Redirect to the Burial_summary method with the specified pageNum
-            //return RdirectToAction("Burial_summary", new { pageNum = 1 });
 
             TempData["search"] = JsonConvert.SerializeObject(search);
             return RedirectToAction("Burial_summary", new { pageNum = 1 });
@@ -171,16 +147,18 @@ namespace INTEX2.Controllers
             return View();
         }
 
-        [HttpGet("{mummy_id}")]
+        [HttpGet("Edit_burialmain/{mummy_id}")]
         public IActionResult Edit_burialmain(long mummy_id)
         {
             var mummy_data = repo.Mummies.SingleOrDefault(x => x.id == mummy_id);
             return View("Edit_burialmain",mummy_data);
         }
 
-        [HttpPost]
+        [HttpPost("Edit_burialmain/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit_burialmain(long id , [Bind("fieldbookexcavationyear, fieldbookpage, dataexpertinitials, squarenorthsouth, northsouth, squareeastwest, eastwest, area, burialnumber, westtohead, westtofeet, southtohead, southtofeet, depth, length, headdirection, preservation, wrapping, adultsubadult, sex, ageatdeath, haircolor, samplescollected, goods, facebundles, text, burialid, photos, dateofexcavation, shaftnumber, clusternumber, burialmaterials, excavationrecorder, hair")] Mummy mummy)
+        //public IActionResult Edit_burialmain(long id , [Bind("fieldbookexcavationyear, fieldbookpage, dataexpertinitials, squarenorthsouth, northsouth, squareeastwest, eastwest, area, burialnumber, westtohead, westtofeet, southtohead, southtofeet, depth, length, headdirection, preservation, wrapping, adultsubadult, sex, ageatdeath, haircolor, samplescollected, goods, facebundles, text, burialid, photos, dateofexcavation, shaftnumber, clusternumber, burialmaterials, excavationrecorder, hair")] Mummy mummy)
+        public IActionResult Edit_burialmain(long id, Mummy mummy)
+
         {
             //var mummyToUpdate = repo.GetMummyById(id);
             var mummyToUpdate = repo.Mummies.SingleOrDefault(x => x.id == id);
