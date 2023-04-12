@@ -40,7 +40,7 @@
                 }
                 @if (User.IsInRole("Admin"))
                 {
-                    <td><button>Edit</button></td>
+            <td><a asp-controller="Home" asp-action="Edit_burialmain" asp-route-id="@mummy.id">Edit</a></td>
                     <td><button>Delete</button></td>
                 }
             </tr>
@@ -51,11 +51,3 @@
   
 </div>
 
-@*@foreach (var mummy in Model)
-{
-    <div>
-        <h2>@mummy.Wrapping </h2>
-        <!-- Display other properties of the mummy -->
-    </div>
-}
-*@
