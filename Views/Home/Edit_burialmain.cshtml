@@ -5,10 +5,10 @@
 
 <h1>Edit a Mummy</h1>
 
-<form method="post" action="@Url.Action("Edit_burialmain", "Home", new { mummy_id = Model.id })">
+<form method="post" asp-controller="Home" asp-action="Edit_burialmain" asp-route-id= "@Model.id">
 
 
-    <input type="hidden" asp-for="id" value="@Model.id" />
+    <input type="hidden" asp-for="id" />
     <div class="form-group">
         @foreach (var prop in typeof(Mummy).GetProperties())
         {
