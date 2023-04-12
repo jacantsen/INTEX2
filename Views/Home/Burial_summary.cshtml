@@ -2,9 +2,10 @@
 @{
     ViewData["Title"] = "Burial Summary";
 }
-@*@model IEnumerable<Mummy>*@
-@model IEnumerable<INTEX2.Models.Mummy>
+@*@model IEnumerable<Mummy>
+    @model IEnumerable<INTEX2.Models.Mummy>*@
 
+@model MummiesViewModel
 
 
 <h1>Mummies</h1>
@@ -24,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var mummy in Model)
+            @foreach (var mummy in Model.Mummies)
             {
 
                 <tr>
@@ -36,15 +37,15 @@
             }
         </tbody>
     </table>
-    
-  
+
+
 </div>
 
-@*@foreach (var mummy in Model)
-{
-    <div>
-        <h2>@mummy.Wrapping </h2>
-        <!-- Display other properties of the mummy -->
-    </div>
-}
-*@
+
+
+
+<div page-model="@Model.PageInfo" page-action="Burial_summary" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" class="text-center"></div>
+
+@*class="btn-group pull-right m-1"*@
