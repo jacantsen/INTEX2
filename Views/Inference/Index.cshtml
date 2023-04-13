@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Burial Prediction";
+}
+
+@*<style>
+    input[type="radio"] {
+        margin-right: 0.5rem;
+    }
+</style>*@
+
+@model MummyData
+
+<div style="text-align: center; font-size: 1.5rem;">Burial Prediction Form</div>
+<hr style="border: 1px solid black;">
+
+<form id="burial-form" style="max-width: 600px; margin: 0 auto;" method="post" asp-controller="Inference" asp-action="Index">
+    <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
+        <label style="font-weight: bold;" asp-for="squarenorthsouth">North South Coordinate</label>
+        <input type="number" asp-for="squarenorthsouth" step="any" placeholder="Enter North South Coordinate" style="padding: 0.5rem;">
+    </div>
+    <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
+        <label style="font-weight: bold;" asp-for="squareeastwest">East West Coordinate</label>
+        <input type="number" asp-for="squareeastwest" step="any" placeholder="Enter East West Coordinate" style="padding: 0.5rem;">
+    </div>
+    <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
+        <label style="font-weight: bold;" asp-for="depth">Burial Depth</label>
+        <input type="number" asp-for="depth" step="any" placeholder="Enter Burial Depth" style="padding: 0.5rem;">
+    </div>
+    <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
+        <label style="font-weight: bold;" asp-for="length">Mummy Length</label>
+        <input type="number" asp-for="length" step="any" placeholder="Enter Mummy Length" style="padding: 0.5rem;">
+    </div>
+    <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
+        <label style="font-weight: bold;">Mummy Age</label>
+        <div style="display: flex; flex-direction: row;">
+            <label><input type="radio" asp-for="adultsubadult_A" name="age" value="1" checked> Adult</label>
+            <label style="margin-left: 1rem;"><input type="radio" asp-for="adultsubadult_C" name="age" value="1"> Child</label>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
+        <label style="font-weight: bold;">Mummy Wrap Level</label>
+        <div style="display: flex; flex-direction: row;">
+           <label>
+                <input type="radio" asp-for="wrapping_B" name="wrap" value="1" checked> Bare Bones
+            </label>
+            <label style="margin-left: 1rem;">
+                <input type="radio" asp-for="wrapping_H" name="wrap" value="1">Half-Wrapped
+           </label>
+            <label style="margin-left: 1rem;">
+                <input type="radio" asp-for="wrapping_W" name="wrap" value="1"> Fully-Wrapped
+            </label>
+        </div>
+    </div>
+    <button type="submit" style="padding: 0.5rem; font-weight: bold; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+</form>
+<h1>@ViewBag.prediction</h1>
+
+
+@*<script>
+        document.getElementById("burial-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const northSouth = document.getElementById("north-south").value;
+            const eastWest = document.getElementById("east-west").value;
+            const burialDepth = document.getElementById("burial-depth").value;
+            const mummyLength = document.getElementById("mummy-length").value;
+            const mummyAge = document.querySelector('input[name="age"]:checked').value;
+            const mummyWrap = document.querySelector('input[name="wrap"]:checked').value;
+
+            const inputData = [northSouth, eastWest, burialDepth, mummyLength, mummyAge, mummyWrap];
+
+            const response = await fetch("your-backend-url", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ input: inputData })
+            });
+
+            const result = await response.json();
+
+            // Process the JSON response here (e.g., display it on the page or log it to the console)
+            console.log(result);
+        });
+</script>*@

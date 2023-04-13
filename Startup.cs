@@ -16,6 +16,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Google;
 using INTEX2.Models;
+using Microsoft.ML.OnnxRuntime;
 
 namespace INTEX2
 {
@@ -59,7 +60,9 @@ namespace INTEX2
                 {
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
-
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("./mymodel.onnx")
+            );
 
 
 
