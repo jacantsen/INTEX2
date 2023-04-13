@@ -140,6 +140,8 @@ body {
 .filter-btn-mum {
     float: left;
     top: 10px;
+    margin-right: 50px;
+    color: black;
     box-shadow: 2px 2px;
     left: 10px;
     margin-bottom: 30px;
@@ -164,8 +166,10 @@ body {
 .hide-btn-mum {
     float: left;
     top: 10px;
+    color: black;
     box-shadow: 2px 2px;
     left: -100%;
+    margin-right: 50px;
     margin-bottom: 30px;
     width: 150px;
     height: 30px;
@@ -203,12 +207,12 @@ body {
 }
 
 .sidebar-open-mum .filter-btn-mum { 
-    left: -50%;
+    left: -120%;
     
 }
 
 .sidebar-open-mum .hide-btn-mum {
-    left:  -50px;
+    left:  -150px;
 }
 /* Radio Button
 -------------------------------------------------- */
@@ -275,7 +279,7 @@ button {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+   /*z-index: 1;*/ /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -391,3 +395,120 @@ hr {
 .na-text {
     color: rgb(0 0 0 / 29%);
 }
+
+.orange-bg {
+    background-color: floralwhite;
+    text-align: left;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.textile-button {
+    display: inline-block;
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background-color: #fbe8d8;
+    color: #495057;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    z-index:10;
+}
+
+.textile-button:hover {
+    background-color: #e9ecef;
+    color: #212529;
+    text-decoration: none;
+}
+
+.textile-button:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/*backgroun papyrus and heiroglypihcs*/
+
+.textile-container {
+    background-image: url('https://img.freepik.com/premium-photo/traditional-egyptian-handmade-blank-papyrus_287743-27.jpg');
+    background-repeat: repeat;
+    background-size: cover;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #5a5a5a;
+    box-shadow: 0 0 0 3px #d2b48c, /* Base color */
+    0 0 0 6px #5a5a5a, /* Edge color */
+    0 4px 6px rgba(0, 0, 0, 0.1); /* Add some depth */
+    border-radius: 10px;
+    padding: 2rem;
+    z-index:-3;
+}
+
+    .textile-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgb(235 209 177 / 63%); /* Adjust opacity (0.6) as needed */
+        z-index: -2; /* Place the overlay below the content */
+    }
+
+
+.textile-container-main {
+    background-image: url('https://img.freepik.com/premium-photo/traditional-egyptian-handmade-blank-papyrus_287743-27.jpg');
+    background-repeat: repeat;
+    background-size: cover;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #5a5a5a;
+    box-shadow: 0 0 0 3px #d2b48c, /* Base color */
+    0 0 0 6px #5a5a5a, /* Edge color */
+    0 4px 6px rgba(0, 0, 0, 0.1); /* Add some depth */
+    border-radius: 10px;
+    padding: 2rem;
+    z-index: -3;
+}
+
+    .textile-container-main::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgb(254 252 239 / 65%); /* Adjust opacity (0.6) as needed */
+        z-index: -2; /* Place the overlay below the content */
+    }
+
+
+.textile-container-texts {
+    background-image: url('https://img.freepik.com/premium-photo/traditional-egyptian-handmade-blank-papyrus_287743-27.jpg');
+    background-repeat: repeat;
+    background-size: cover;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #5a5a5a;
+    box-shadow: 0 0 0 3px #d2b48c, /* Base color */
+    0 0 0 6px #5a5a5a, /* Edge color */
+    0 4px 6px rgba(0, 0, 0, 0.1); /* Add some depth */
+    border-radius: 10px;
+    padding: 2rem;
+   /* z-index: -3;*/
+}
+
+    .textile-container-texts::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgb(235 201 187 / 73%); /* Adjust opacity (0.6) as needed */
+       /* z-index: 2;*/ /* Place the overlay below the content */
+    }

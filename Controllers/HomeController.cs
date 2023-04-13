@@ -55,12 +55,11 @@ namespace INTEX2.Controllers
                 long burialId = idNumber;
                 var results = repo.Mummies
                                .Where(m => m.id == burialId)
-                               .FirstOrDefault()
-                               //.Include(m => m.BurialMain_Textile)
-                               //     .ThenInclude(bmt => bmt.Textile)
-                               //         .ThenInclude(t => t.ColorTextile)
-                               //             .ThenInclude(ct => ct.Color)
-                                ;
+                               .Include(m => m.BurialMain_Textile)
+                                    .ThenInclude(bmt => bmt.Textile)
+                                        .ThenInclude(t => t.ColorTextile)
+                                            .ThenInclude(ct => ct.Color)
+                                 .FirstOrDefault();
 
                 ViewBag.SearchPerformed = true;
                 return View(results);
