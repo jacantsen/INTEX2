@@ -10,6 +10,7 @@ namespace INTEX2.Models
 
         void DeleteMummy(Mummy mummy);
         void UpdateMummy(Mummy mummy);
-        // void AddMummy(Mummy mummy);
+        void AddMummy(Mummy mummy);
+        
     }
 }

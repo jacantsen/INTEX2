@@ -1,0 +1,68 @@
+﻿@*@model Mummy
+    @{
+        ViewData["Title"] = "Mummy Details";
+    }
+
+    <h1>Burial Details</h1>
+    <input type="hidden" asp-for="id" />
+
+    <div class="card-text p-1">Sex: @Model.sex</div>
+    <div class="card-text p-1">Burial Depth: @Model.depth</div>
+    <br />
+    <p>It is possible to determine if a Mummy is an adult(A) or a child(C).</p>
+    <div class="card-text p-1">Age at Death: @Model.ageatdeath</div>
+    <br />
+    <p>Mummies are found facing either East or West at Fag el Gamous. </p>
+    <div class="card-text p-1">Head Direction: @Model.headdirection</div>
+    <div class="card-text p-1">Hair Color: @Model.haircolor</div>
+    <div class="card-text p-1">Presence of a Face Bundle: @Model.facebundles</div>*@
+
+@model Mummy
+@{
+    ViewData["Title"] = "Mummy Details";
+}
+
+<h1 class="text-center">Burial Summary</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h5 >Artifact</h5>
+            <img src="~/img/ArtifactImg.JPG" class="img-fluid" alt="Artifact" />
+        </div>
+        <div class="col-md-6">
+            <h5>Textile</h5>
+            <img src="~/img/TextileImg.jpg" class="img-fluid" alt="Textile" />
+        </div>
+    </div>
+</div>
+<input type="hidden" asp-for="id" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mummy Information</h5>
+                    <p class="card-text"><strong>Sex:</strong> @(!string.IsNullOrEmpty(Model.sex) ? Model.sex : "Unavailable")</p>
+                    <p class="card-text"><strong>Burial Depth:</strong> @(Model.depth != null ? Model.depth.ToString() : "Unavailable")</p>
+                    <p class="card-text"><strong>Age at Death:</strong> @(!string.IsNullOrEmpty(Model.ageatdeath) ? Model.ageatdeath : "Unavailable")</p>
+                    <p class="card-text"><strong>Head Direction:</strong> @(!string.IsNullOrEmpty(Model.headdirection) ? Model.headdirection : "Unavailable")</p>
+                    <p class="card-text"><strong>Hair Color:</strong> @(!string.IsNullOrEmpty(Model.haircolor) ? Model.haircolor : "Unavailable")</p>
+                    <p class="card-text"><strong>Presence of a Face Bundle:</strong> @(Model.facebundles != null ? Model.facebundles.ToString() : "Unavailable")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Interesting Facts</h5>
+                    <p class="card-text">Mummies are found facing either East or West at Fag el Gamous.</p>
+                    <h5 class="card-title">Notes</h5>
+                    <p class="card-text"> @(Model.text != null ? Model.text.ToString() : "Unavailable")</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

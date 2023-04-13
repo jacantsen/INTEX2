@@ -5,22 +5,28 @@
 }
 
 <h1>Add a Mummy</h1>
+<div asp-validation-summary="All"></div>
+<form method="post" action="Add_mummy">
+    @Html.AntiForgeryToken()
 
-<form>
     <div class="form-group">
-        @foreach (var prop in typeof(Mummy).GetProperties()) { 
-
-            @if (prop.Name == "id")
+        
+        @foreach (var prop in typeof(Mummy).GetProperties())
+        {
+            if (prop.Name == "id")
             {
                 <input asp-for="@prop.Name" class="form-control" value="" type="hidden" />
             }
-            @if (prop.Name != "id")
+            else
             {
-            <label asp-for="@prop.Name" class="control-label">@prop.Name</label>
-            <input asp-for="@prop.Name" class="form-control" value="" />
-            <span asp-validation-for="@prop.Name" class="text-danger"></span>
+                <label asp-for="@prop.Name" class="control-label">@prop.Name</label>
+                <input name="@prop.Name" class="form-control" value="" />
+                
             }
         }
-            </div>
+    </div>
+
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
+
+
