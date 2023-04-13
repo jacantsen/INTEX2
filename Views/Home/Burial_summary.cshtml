@@ -2,8 +2,6 @@
     ViewData["Title"] = "Burial Summary";
 }
 
-@*@model IEnumerable<Mummy>
-    @model IEnumerable<INTEX2.Models.Mummy>*@
 <link href="~/css/site.css" rel="stylesheet" />
 
 @model MummiesViewModel
@@ -181,6 +179,7 @@
                         <td>
                                 <a asp-controller="Home" asp-action="_MoreInfoPartial" asp-route-mummy_id="@mummy.id" data-toggle="modal" data-target="#mummyModal" class="details-link">Details</a>
                             </td>
+
                             @foreach (var prop in typeof(Mummy).GetProperties())
                             {
                                 bool displayed = false;
@@ -203,6 +202,7 @@
                                     <td>@prop.GetValue(mummy)</td>
                                 }
                             }
+
 
                         </tr>
                     }
