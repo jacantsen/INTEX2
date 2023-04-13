@@ -225,6 +225,12 @@ namespace INTEX2.Controllers
             return RedirectToAction("Burial_summary");
         }
 
-
+        
+        [HttpGet("_MoreInfoPartial/{mummy_id}")]
+        public IActionResult _MoreInfoPartial(long mummy_id)
+        {
+            var mummy_data = repo.Mummies.SingleOrDefault(x => x.id == mummy_id);
+            return PartialView("_MoreInfoPartial", mummy_data);
+        }
     }
 }

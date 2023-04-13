@@ -3,16 +3,16 @@
 }
 
 @*@model IEnumerable<Mummy>
-@model IEnumerable<INTEX2.Models.Mummy>*@
+    @model IEnumerable<INTEX2.Models.Mummy>*@
 <link href="~/css/site.css" rel="stylesheet" />
 
 @model MummiesViewModel
 
-<div class="header-container-mum" >
+<div class="header-container-mum">
     <h1 class="titular">Mummies</h1>
     <!--<button id="filterBtn" class="filter-btn-mum">Filter</button>-->
     <div id="filterBtn" class="filter-btn-mum">Filter</div>
-    <div style="margin-left: auto;" > 
+    <div style="margin-left: auto;">
         <a asp-action="ResetFilter" asp-controller="Home" class="btn btn-danger">Reset</a>
     </div>
     @if (User.IsInRole("Admin"))
@@ -23,7 +23,7 @@
 
 <div id="hideBtn" class="hide-btn-mum">Hide Filter Bar</div>
 <div class="containment">
-    
+
     <div id="sidebar" class="left-column-mum">
         <!--form within left sidebar. connects to the post action in Controller to filter data-->
         <form asp-controller="Home" asp-action="Burial_summary" method="post">
@@ -35,9 +35,9 @@
                 <br><br>
 
                 <label for="burialId">Burial ID</label>
-                <input class="filter-input-mum" type="number" id="burialId" name="burialId" >
+                <input class="filter-input-mum" type="number" id="burialId" name="burialId">
                 <br><br>
- 
+
                 <label for="sex">Sex</label><br>
                 <div class="toggle-switch">
                     <div class="switch-option" id="male" onclick="toggleGender('male')">Male</div>
@@ -48,16 +48,16 @@
 
                 <!--make it so that there is a between this and this setting-->
                 <label for="depth">Burial Depth</label>
-                <input class ="filter-input-mum" type="text" id="depth" name="depth" >
+                <input class="filter-input-mum" type="text" id="depth" name="depth">
                 <br><br>
 
                 <label for="textileColor">Textile Color</label>
-                <input class="filter-input-mum" type="text" id="textileColor" name="textileColor" >
+                <input class="filter-input-mum" type="text" id="textileColor" name="textileColor">
                 <br><br>
                 <label for="textileStructure">Textile Structure</label>
-                <input class="filter-input-mum" type="text" id="textileStructure" name="textileStructure" >
+                <input class="filter-input-mum" type="text" id="textileStructure" name="textileStructure">
                 <br><br>
-                
+
                 <label for="deathAge">Age at Death</label>
                 <select class="filter-input-mum" id="deathAge" name="deathAge">
                     <option value="A">Adult (15+ years)</option>
@@ -69,16 +69,16 @@
                 <br><br>
 
                 <label for="headDirection">Head Direction</label>
-                <input class="filter-input-mum" type="text" id="headDirection" name="headDirection" >
+                <input class="filter-input-mum" type="text" id="headDirection" name="headDirection">
                 <br><br>
-                
+
                 <label for="textileFunction">Textile Function</label>
-                <input class="filter-input-mum" type="text" id="textileFunction" name="textileFunction" >
+                <input class="filter-input-mum" type="text" id="textileFunction" name="textileFunction">
                 <br><br>
                 <label for="hairColor">Hair Color</label>
-                <input class="filter-input-mum" type="text" id="hairColor" name="hairColor" >
+                <input class="filter-input-mum" type="text" id="hairColor" name="hairColor">
                 <br><br>
-                
+
                 <label for="faceBundle">Presence of Face Bundle</label>
                 <div class="toggle-switch">
                     <div class="switch-option" id="option-yes" onclick="toggleSwitch('yes')">Yes</div>
@@ -96,46 +96,55 @@
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
                 <thead>
-                     <tr>
+                    <tr>
                         @if (User.IsInRole("Admin"))
                         {
                             <th>Edit</th>
                             <th>Delete</th>
                         }
+                        @*view details*@
+                        <th>View Details</th>
                         @foreach (var prop in typeof(Mummy).GetProperties())
                         {
                             <th>@prop.Name</th>
                         }
-                        
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var mummy in Model.Mummies)
                     {
 
-                    <tr>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <td>
-                                <a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a>
-                            </td>
-                            <td>
+                        <tr>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <td>
+                                    <a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a>
+                                </td>
+                                <td>
                                     <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" onsubmit="return confirmDelete();">
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
+                                </td>
+                            }
+                            @*<td>
+                                    <a asp-controller="Home" asp-action="MoreInfo" asp-route-mummy_id="@mummy.id">Details</a>
+                                </td>*@
+                            <td>
+                                <a asp-controller="Home" asp-action="_MoreInfoPartial" asp-route-mummy_id="@mummy.id" data-toggle="modal" data-target="#mummyModal" class="details-link">Details</a>
                             </td>
-                        }
-                        @foreach (var prop in typeof(Mummy).GetProperties())
-                        {
-                            <td>@prop.GetValue(mummy)</td>
 
-                        }
-                        
-                    </tr>
+                            @foreach (var prop in typeof(Mummy).GetProperties())
+                            {
+                                <td>@prop.GetValue(mummy)</td>
+
+                            }
+
+                        </tr>
                     }
                 </tbody>
             </table>
-  
+
         </div>
     </div>
 </div>
@@ -146,14 +155,32 @@
 
 
 <div page-model="@Model.PageInfo" page-action="Burial_summary" page-classes-enabled="true"
-    page-class="btn" page-class-normal="btn-outline-dark"
-    page-class-selected="btn-primary" class="text-center">
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" class="text-center">
 
 </div>
 
-<script>
-    function confirmDelete() {
-        return confirm('Are you sure you want to delete this record?');
-    }
-</script>
+<!-- Mummy Modal -->
+<div class="modal fade" id="mummyModal" tabindex="-1" role="dialog" aria-labelledby="mummyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mummyModalLabel">Mummy Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- The PartialView content will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
