@@ -1,0 +1,171 @@
+﻿@model INTEX2.Models.Mummy
+
+@if (ViewBag.SearchPerformed == null)
+{
+    <h2>Search Record Id</h2>
+    <br />
+}
+@if (ViewBag.SearchPerformed == false)
+{
+    <h2>Search Record Id</h2>
+    <br />
+
+}
+else if ((ViewBag.SearchPerformed == true) & (Model == null))
+{
+    <h2>Search Record Id</h2>
+    <br />
+}
+<!-- search bar-->
+
+<div class="search-wrapper">
+    <form id="search-form" class="form-inline" role="form" method="post" asp-controller="Home" asp-action="RecordLookup" target="_blank">
+        <div class="input-group">
+            <input type="text" class="form-control search-form" name="idNumber" placeholder="Id number">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary search-btn" data-target="#search-form" name="q">
+                    <i class="fa fa-search"></i> Search
+                </button>
+            </span>
+
+        </div>
+    </form>
+</div>
+
+<!--if the model isn't empty then return lots of data-->
+@if (ViewBag.SearchPerformed == true)
+{
+        @if (Model != null)
+    {
+        //All passed in data goes in here
+    
+        <br><br>
+        <h3>@Model.id</h3>
+
+        <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card key-info">
+                    <div class="card-body">
+                        <h4 class="card-text"><strong>Sex:</strong> @(string.IsNullOrEmpty(Model.sex) ? "NA" : Model.sex)</h4>
+                        <h4 class="card-text"><strong>Coordinates:</strong> @(string.IsNullOrEmpty(Model.northsouth) ? "NA" : Model.northsouth) @(string.IsNullOrEmpty(Model.squarenorthsouth) ? "" : Model.squarenorthsouth + "/200") @(string.IsNullOrEmpty(Model.eastwest) ? "NA" : Model.eastwest) @(string.IsNullOrEmpty(Model.squareeastwest) ? "" : Model.squareeastwest + "/50")</h4>
+                        <h4 class="card-text"><strong>Area:</strong> @(string.IsNullOrEmpty(Model.area) ? "NA" : Model.area)</h4>
+                        <h4 class="card-text"><strong>Notes:</strong></h4>
+                        <p class="notes @(string.IsNullOrEmpty(Model.text) ? "na-text" : "")">@Model.text</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 additional-details">
+                <h2 class="mb-3 ">Additional Details</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="@(string.IsNullOrEmpty(Model.fieldbookexcavationyear) ? "na-text" : "")">
+                            <strong>Fieldbook Excavation Year:</strong> @(string.IsNullOrEmpty(Model.fieldbookexcavationyear) ? "NA" : Model.fieldbookexcavationyear)
+                        </p>
+                        <p class="@(string.IsNullOrEmpty(Model.fieldbookpage) ? "na-text" : "")">
+                            <strong>Fieldbook Page:</strong> @(string.IsNullOrEmpty(Model.fieldbookpage) ? "NA" : Model.fieldbookpage)
+                        </p>
+                        <p class="@(string.IsNullOrEmpty(Model.dataexpertinitials) ? "na-text" : "")">
+                            <strong>Data Expert Initials:</strong> @(string.IsNullOrEmpty(Model.dataexpertinitials) ? "NA" : Model.dataexpertinitials)
+                        </p>
+                        <p class="@(string.IsNullOrEmpty(Model.burialnumber) ? "na-text" : "")">
+                            <strong>Burial Number:</strong> @(string.IsNullOrEmpty(Model.burialnumber) ? "NA" : Model.burialnumber)
+                        </p>
+                        <p class="@(string.IsNullOrEmpty(Model.westtohead) ? "na-text" : "")">
+                            <strong>West to Head:</strong> @(string.IsNullOrEmpty(Model.westtohead) ? "NA" : Model.westtohead)
+                        </p>
+                        <p class="@(string.IsNullOrEmpty(Model.westtofeet) ? "na-text" : "")">
+                            <strong>West to Feet:</strong> @(string.IsNullOrEmpty(Model.westtofeet) ? "NA" : Model.westtofeet)
+                        </p>
+                        <p class="@(string.IsNullOrEmpty(Model.southtohead) ? "na-text" : "")">
+                            <strong>South to Head:</strong> @(string.IsNullOrEmpty(Model.southtohead) ? "NA" : Model.southtohead)
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                    <p class="@(string.IsNullOrEmpty(Model.southtofeet) ? "na-text" : "")">
+                                <strong>South to Feet:</strong> @(string.IsNullOrEmpty(Model.southtofeet) ? "NA" : Model.southtofeet)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.depth) ? "na-text" : "")">
+                                <strong>Depth:</strong> @(string.IsNullOrEmpty(Model.depth) ? "NA" : Model.depth)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.length) ? "na-text" : "")">
+                                <strong>Length:</strong> @(string.IsNullOrEmpty(Model.length) ? "NA" : Model.length)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.headdirection) ? "na-text" : "")">
+                                <strong>Head Direction:</strong> @(string.IsNullOrEmpty(Model.headdirection) ? "NA" : Model.headdirection)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.preservation) ? "na-text" : "")">
+                                <strong>Preservation:</strong> @(string.IsNullOrEmpty(Model.preservation) ? "NA" : Model.preservation)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.wrapping) ? "na-text" : "")">
+                                <strong>Wrapping:</strong> @(string.IsNullOrEmpty(Model.wrapping) ? "NA" : Model.wrapping)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="@(string.IsNullOrEmpty(Model.adultsubadult) ? "na-text" : "")">
+                                <strong>Adult Subadult:</strong> @(string.IsNullOrEmpty(Model.adultsubadult) ? "NA" : Model.adultsubadult)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.ageatdeath) ? "na-text" : "")">
+                                <strong>Age at Death:</strong> @(string.IsNullOrEmpty(Model.ageatdeath) ? "NA" : Model.ageatdeath)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.haircolor) ? "na-text" : "")">
+                                <strong>Hair Color:</strong> @(string.IsNullOrEmpty(Model.haircolor) ? "NA" : Model.haircolor)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.samplescollected) ? "na-text" : "")">
+                                <strong>Samples Collected:</strong> @(string.IsNullOrEmpty(Model.samplescollected) ? "NA" : Model.samplescollected)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.goods) ? "na-text" : "")">
+                                <strong>Goods:</strong> @(string.IsNullOrEmpty(Model.goods) ? "NA" : Model.goods)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.facebundles) ? "na-text" : "")">
+                                <strong>Face Bundles:</strong> @(string.IsNullOrEmpty(Model.facebundles) ? "NA" : Model.facebundles)
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="@(string.IsNullOrEmpty(Model.photos) ? "na-text" : "")">
+                                <strong>Photos:</strong> @(string.IsNullOrEmpty(Model.photos) ? "NA" : Model.photos)
+                            </p>
+                            @*<p class="@(Model.dateofexcavation == null ? "na-text" : "")">
+                                <strong>Date of Excavation:</strong> @(Model.dateofexcavation == null ? "NA" : Model.dateofexcavation.ToString("yyyy-MM-dd"))
+                            </p>*@
+                            <p class="@(string.IsNullOrEmpty(Model.shaftnumber) ? "na-text" : "")">
+                                <strong>Shaft Number:</strong> @(string.IsNullOrEmpty(Model.shaftnumber) ? "NA" : Model.shaftnumber)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.clusternumber) ? "na-text" : "")">
+                                <strong>Cluster Number:</strong> @(string.IsNullOrEmpty(Model.clusternumber) ? "NA" : Model.clusternumber)
+                            </p>
+                            <p class="@(string.IsNullOrEmpty(Model.burialmaterials) ? "na-text" : "")">
+                                <strong>Burial Materials:</strong> @(string.IsNullOrEmpty(Model.burialmaterials) ? "NA" : Model.burialmaterials)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="@(string.IsNullOrEmpty(Model.excavationrecorder) ? "na-text" : "")">
+                                <strong>Excavation Recorder:</strong> @(string.IsNullOrEmpty(Model.excavationrecorder) ? "NA" : Model.excavationrecorder)
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="@(string.IsNullOrEmpty(Model.hair) ? "na-text" : "")">
+                                <strong>Hair:</strong> @(string.IsNullOrEmpty(Model.hair) ? "NA" : Model.hair)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    }
+    else
+    {
+        <br>
+        <br>
+        <h3 style="color:red !important"> *No record matches that id! Try again</h3>
+    }
+
+}
+
