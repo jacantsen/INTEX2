@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Humanizer.On;
-using Newtonsoft.Json;
+
 
 namespace INTEX2.Controllers
 {
@@ -142,10 +142,24 @@ namespace INTEX2.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Add_mummy()
         {
             return View();
         }
+
+
+        [HttpPost]
+        public IActionResult Add_mummy(Mummy mummy)
+        {
+            if (ModelState.IsValid)
+            {
+                repo.AddMummy(mummy);
+                return RedirectToAction("Burial_summary");
+            }
+            return View(mummy);
+        }
+
 
         //delete method
         [HttpPost]
