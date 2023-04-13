@@ -5,11 +5,12 @@
 }
 
 <h1>Add a Mummy</h1>
-
+<div asp-validation-summary="All"></div>
 <form method="post" action="Add_mummy">
     @Html.AntiForgeryToken()
 
     <div class="form-group">
+        
         @foreach (var prop in typeof(Mummy).GetProperties())
         {
             if (prop.Name == "id")
@@ -20,7 +21,7 @@
             {
                 <label asp-for="@prop.Name" class="control-label">@prop.Name</label>
                 <input name="@prop.Name" class="form-control" value="" />
-                <span asp-validation-for="@prop.Name" class="text-danger"></span>
+                
             }
         }
     </div>
