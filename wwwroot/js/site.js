@@ -119,3 +119,41 @@ function toggleGender(option) {
     }
 }
 
+
+
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this record?');
+    }
+
+
+
+
+
+
+    $(document).ready(function () {
+        $("body").on("click", ".details-link", function (event) {
+            event.preventDefault();
+            let url = $(this).attr("href");
+            $("#mummyModal .modal-body").load(url, function (response, status, xhr) {
+                if (status == "error") {
+                    console.error("Error loading partial view:", xhr.status, xhr.statusText);
+                } else {
+                    $("#mummyModal").modal("show");
+                }
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        $("body").on("click", ".details-link", function (event) {
+            event.preventDefault();
+            let url = $(this).attr("href");
+            $("#mummyModal .modal-body").load(url, function () {
+                $("#mummyModal").modal("show");
+            });
+        });
+        });
+
+
+
