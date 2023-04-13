@@ -157,35 +157,31 @@
                                 </form>
                             </div>
                     <tr>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <td>
-                                <a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a>
-                            </td>
-                            <td>
-                                   @* <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" class="delete-form">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>*@
-                                    <button class="delete-modal-btn" data-mummy-id="@mummy.id">Delete</button>
-                            </td>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <td>
+                                    <a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a>
+                                </td>
+                                <td>
+                                       @* <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" class="delete-form">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>*@
+                                        <button class="delete-modal-btn" data-mummy-id="@mummy.id">Delete</button>
+                                </td>
                             
                         
-                        }
-                        <td>
-                                <a asp-controller="Home" asp-action="_MoreInfoPartial" asp-route-mummy_id="@mummy.id" data-toggle="modal" data-target="#mummyModal" class="details-link">Details</a>
-                            </td>
-                        @foreach (var prop in typeof(Mummy).GetProperties())
-                        {
-                            <td>@prop.GetValue(mummy)</td>
-
-
+                            }
+                            <td>
+                                    <a asp-controller="Home" asp-action="_MoreInfoPartial" asp-route-mummy_id="@mummy.id" data-toggle="modal" data-target="#mummyModal" class="details-link">Details</a>
+                                </td>
                             @foreach (var prop in typeof(Mummy).GetProperties())
                             {
                                 <td>@prop.GetValue(mummy)</td>
 
-                            }
 
-                        </tr>
+                                
+                            }
+                       </tr>
                     }
                 </tbody>
             </table>
@@ -228,8 +224,8 @@
 
 
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@*<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>*@
 
 
