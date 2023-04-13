@@ -22,6 +22,7 @@ namespace INTEX2.Models
         {
             return context.Mummies.FirstOrDefault(m => m.id == mummyId);
         }
+        
 
 
         public void DeleteMummy(Mummy mummy)
@@ -35,6 +36,18 @@ namespace INTEX2.Models
             context.Mummies.Update(mummy);
             context.SaveChanges();
         }
+        public void AddMummy(Mummy mummy)
+        {
+            // Get the max id of the last mummy in the database
+            long maxId = context.Mummies.DefaultIfEmpty().Max(m => m == null ? 0 : m.id);
+
+            // Set the id of the new mummy to the max id + 1
+            mummy.id = maxId + 1;
+
+            context.Mummies.Add(mummy);
+            context.SaveChanges();
+        }
+
     }
 
 }
