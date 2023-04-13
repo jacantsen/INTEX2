@@ -2,8 +2,6 @@
     ViewData["Title"] = "Burial Summary";
 }
 
-@*@model IEnumerable<Mummy>
-    @model IEnumerable<INTEX2.Models.Mummy>*@
 <link href="~/css/site.css" rel="stylesheet" />
 
 @model MummiesViewModel
@@ -178,12 +176,8 @@
                         {
                             <td>@prop.GetValue(mummy)</td>
 
+                        }
 
-                            @foreach (var prop in typeof(Mummy).GetProperties())
-                            {
-                                <td>@prop.GetValue(mummy)</td>
-
-                            }
 
                         </tr>
                     }
