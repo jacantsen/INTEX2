@@ -40,6 +40,37 @@ namespace INTEX2.Controllers
         {
             return View();
         }
+        
+        [HttpGet]
+        public IActionResult RecordLookup()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult RecordLookup(long idNumber)
+        {
+            if (idNumber > 0)
+            {
+                long burialId = idNumber;
+                var results = repo.Mummies
+                               .Where(m => m.id == burialId)
+                               .FirstOrDefault()
+                               //.Include(m => m.BurialMain_Textile)
+                               //     .ThenInclude(bmt => bmt.Textile)
+                               //         .ThenInclude(t => t.ColorTextile)
+                               //             .ThenInclude(ct => ct.Color)
+                                ;
+
+                ViewBag.SearchPerformed = true;
+                return View(results);
+            }
+            else
+            {
+                ViewBag.SearchPerformed = false;
+                return View();
+            }
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -114,7 +145,6 @@ namespace INTEX2.Controllers
                     }
                         
                 }
-                
 
                 //put in Textile structure if time
                 // Also add Textile function if time
@@ -126,9 +156,8 @@ namespace INTEX2.Controllers
                            bmt.Textile != null &&
                            bmt.Textile.ColorTextile != null &&
                            bmt.Textile.ColorTextile.Color != null &&
-                           bmt.Textile.ColorTextile.Color.value.Contains(search.textileColor)));
+                           bmt.Textile.ColorTextile.Color.value.ToUpper().Contains(search.textileColor.ToUpper())));
                 }
-
 
             }
 
@@ -160,7 +189,6 @@ namespace INTEX2.Controllers
 
             //return View(y);
         }
-
         public IActionResult Burial_prediction()
         {
             return View();

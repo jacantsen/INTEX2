@@ -98,7 +98,7 @@ body {
 
 .left-column-mum {
     /* Adjust the width to your preference */
-    width: 16%;
+    width: 20%;
     /* Set the background color of the left column */
     background-color: #f0f0f0;
     /* Add some padding to the left column */
@@ -194,12 +194,12 @@ body {
 }
 
 .sidebar-open-mum .main-content-mum {
-    margin-left: 16%; /* Use the same width as defined in .left-column */
+    margin-left: 20%; /* Use the same width as defined in .left-column */
 }
 
 .sidebar-open-mum .content-mum { /* Change this line */
-    margin-left: 16%;
-    width: 83%; /* Use the same width as defined in .left-column */
+    margin-left: 22%;
+    width: 79%; /* Use the same width as defined in .left-column */
 }
 
 .sidebar-open-mum .filter-btn-mum { 
@@ -327,4 +327,67 @@ hr {
     .cancelbtn, .deletebtn {
         width: 100%;
     }
+}
+
+
+
+/* Search Bar
+-------------------------------------------------- */
+
+.search-form {
+    border-radius: 30px 0px 0px 30px;
+    /*border-radius:Top-left, Top-right, Bottom-right, Bottom-left;*/
+
+}
+
+.input-group-btn {
+    display: flex;
+    align-items: stretch;
+}
+.btn-primary {
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+}
+
+
+.search-btn {
+    border-radius: 0px 30px 30px 0px;
+    cursor: pointer;
+    height: 38px;
+    margin:  0 !important;
+}
+
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+/* Search page
+-------------------------------------------------- */
+
+.key-info {
+    background-color: #ded4c2;
+    text-align: left;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.additional-details {
+    background-color: #dcd3cdcc;
+    text-align: left;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
+
+.notes {
+    font-size: 0.9em;
+    margin-bottom: 0;
+}
+
+.na-text {
+    color: rgb(0 0 0 / 29%);
 }
