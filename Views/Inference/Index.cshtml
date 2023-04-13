@@ -13,7 +13,7 @@
 <div style="text-align: center; font-size: 1.5rem;">Burial Prediction Form</div>
 <hr style="border: 1px solid black;">
 
-<form id="burial-form" style="max-width: 600px; margin: 0 auto;" method="post" asp-controller="Inference" asp-action="Index">
+<form id="burial-form" style="max-width: 600px; margin: 0 auto;" method="post" action="/Inference/Index">
     <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
         <label style="font-weight: bold;" asp-for="squarenorthsouth">North South Coordinate</label>
         <input type="number" asp-for="squarenorthsouth" step="any" placeholder="Enter North South Coordinate" style="padding: 0.5rem;">
@@ -31,23 +31,30 @@
         <input type="number" asp-for="length" step="any" placeholder="Enter Mummy Length" style="padding: 0.5rem;">
     </div>
     <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
-        <label style="font-weight: bold;">Mummy Age</label>
+        <label style="font-weight: bold;" >Is the Mummy an Adult?</label>
+
         <div style="display: flex; flex-direction: row;">
-            <label><input type="radio" asp-for="adultsubadult_A" name="age" value="1" checked> Adult</label>
-            <label style="margin-left: 1rem;"><input type="radio" asp-for="adultsubadult_C" name="age" value="1"> Child</label>
+            <label>
+                <input type="radio" name="adultsubadult_A" value="1" checked>
+                Adult
+            </label>
+            <label>
+                <input type="radio" name="adultsubadult_A" value="0">
+                Child
+            </label>
         </div>
     </div>
     <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
         <label style="font-weight: bold;">Mummy Wrap Level</label>
         <div style="display: flex; flex-direction: row;">
            <label>
-                <input type="radio" asp-for="wrapping_B" name="wrap" value="1" checked> Bare Bones
+                <input type="radio" name="wrapping_B" value="1" checked> Bare Bones
             </label>
             <label style="margin-left: 1rem;">
-                <input type="radio" asp-for="wrapping_H" name="wrap" value="1">Half-Wrapped
+                <input type="radio"  name="wrapping_B" value="2">Half-Wrapped
            </label>
             <label style="margin-left: 1rem;">
-                <input type="radio" asp-for="wrapping_W" name="wrap" value="1"> Fully-Wrapped
+                <input type="radio"  name="wrapping_B" value="3"> Fully-Wrapped
             </label>
         </div>
     </div>

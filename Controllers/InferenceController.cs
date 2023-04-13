@@ -24,6 +24,33 @@ namespace INTEX2.Controllers
         [HttpPost]
         public ActionResult Index(MummyData data)
         {
+            if (data.adultsubadult_A == 1)
+            {
+                data.adultsubadult_C = 0;
+            }
+            else
+            {
+                data.adultsubadult_C = 1;
+            }
+
+            if(data.wrapping_B == 1)
+            {
+               
+                data.wrapping_H = 0;
+                data.wrapping_W = 0;
+            }
+            else if (data.wrapping_B == 2)
+            {
+                data.wrapping_B = 0;
+                data.wrapping_H = 1;
+                data.wrapping_W = 0;
+            }
+            else
+            {
+                data.wrapping_B = 0;
+                data.wrapping_H = 0;
+                data.wrapping_W = 1;
+            }
 
             var result = _session.Run(new List<NamedOnnxValue>
             {
