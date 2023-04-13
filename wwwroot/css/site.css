@@ -266,7 +266,7 @@ button {
 }
 
 /* Add padding and center-align text to the container */
-.container {
+.del-container {
     padding: 16px;
     text-align: center;
 }

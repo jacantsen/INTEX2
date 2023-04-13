@@ -1,22 +1,24 @@
 ﻿@model INTEX2.Models.Mummy
 
-@if (ViewBag.SearchPerformed == null)
-{
-    <h2>Search Record Id</h2>
-    <br />
-}
-@if (ViewBag.SearchPerformed == false)
-{
-    <h2>Search Record Id</h2>
-    <br />
+<div style="text-align:center">
+    @if (ViewBag.SearchPerformed == null)
+    {
+        <h2>Search Record Id</h2>
+        <br />
+    }
+    @if (ViewBag.SearchPerformed == false)
+    {
+        <h2>Search Record Id</h2>
+        <br />
 
-}
-else if ((ViewBag.SearchPerformed == true) & (Model == null))
-{
-    <h2>Search Record Id</h2>
-    <br />
-}
-<!-- search bar-->
+    }
+    else if ((ViewBag.SearchPerformed == true) & (Model == null))
+    {
+        <h2>Search Record Id</h2>
+        <br />
+    }
+    <!-- search bar-->
+</div>
 
 <div class="search-wrapper">
     <form id="search-form" class="form-inline" role="form" method="post" asp-controller="Home" asp-action="RecordLookup" target="_blank">
@@ -40,7 +42,7 @@ else if ((ViewBag.SearchPerformed == true) & (Model == null))
         //All passed in data goes in here
     
         <br><br>
-        <h3>@Model.id</h3>
+        <h3 style="text-align:center;">@Model.id</h3>
 
         <div class="container mt-5">
         <div class="row">
