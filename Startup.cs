@@ -52,7 +52,17 @@ namespace INTEX2
                 .AddRoles<IdentityRole>() // Add this line to register the role services
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
+
+
+
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Default Password settings.

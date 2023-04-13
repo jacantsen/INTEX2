@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace INTEX2.Models
 {
@@ -20,6 +21,13 @@ namespace INTEX2.Models
         public Mummy GetMummyById(long mummyId)
         {
             return context.Mummies.FirstOrDefault(m => m.id == mummyId);
+        }
+
+
+        public void DeleteMummy(Mummy mummy)
+        {
+            context.Mummies.Remove(mummy);
+            context.SaveChanges();
         }
 
         public void UpdateMummy(Mummy mummy)

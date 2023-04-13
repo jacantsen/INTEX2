@@ -36,9 +36,9 @@ namespace INTEX2.Models
         public string goods { get; set; }
         public string facebundles { get; set; }
         public string text { get; set; }
-        public string burialid { get; set; }
+        public long? burialid { get; set; }
         public string photos { get; set; }
-        public string dateofexcavation { get; set; }
+        public DateTime? dateofexcavation { get; set; }
         public string shaftnumber { get; set; }
         public string clusternumber { get; set; }
         public string burialmaterials { get; set; }
