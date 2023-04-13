@@ -60,7 +60,14 @@ namespace INTEX2.Controllers
             Tensor<string> score = result.First().AsTensor<string>();
             var prediction = new Prediction { PredictedValue = score.First() };
             result.Dispose();
-            ViewBag.prediction = prediction.PredictedValue;
+            if (prediction.PredictedValue == "W")
+            {
+                ViewBag.prediction = "The Head Direction is predicted to face west";
+            }
+            else
+            {
+                ViewBag.prediction = "The Head Direction is predicted to face east";
+            }
             return View();
         }
     }
