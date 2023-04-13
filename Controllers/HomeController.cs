@@ -40,6 +40,37 @@ namespace INTEX2.Controllers
         {
             return View();
         }
+        
+        [HttpGet]
+        public IActionResult RecordLookup()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult RecordLookup(long idNumber)
+        {
+            if (idNumber > 0)
+            {
+                long burialId = idNumber;
+                var results = repo.Mummies
+                               .Where(m => m.id == burialId)
+                               .FirstOrDefault()
+                               //.Include(m => m.BurialMain_Textile)
+                               //     .ThenInclude(bmt => bmt.Textile)
+                               //         .ThenInclude(t => t.ColorTextile)
+                               //             .ThenInclude(ct => ct.Color)
+                                ;
+
+                ViewBag.SearchPerformed = true;
+                return View(results);
+            }
+            else
+            {
+                ViewBag.SearchPerformed = false;
+                return View();
+            }
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -81,17 +112,42 @@ namespace INTEX2.Controllers
                 {
                     results = results.Where(m => m.id == search.burialId);
                 }
-
                 if (!string.IsNullOrEmpty(search.deathAge))
                 {
                     results = results.Where(m => m.ageatdeath == search.deathAge);
                 }
-
+                //if there's time, make it so that it's between this depth and this depth
+                if (!string.IsNullOrEmpty(search.depth))
+                {
+                    results = results.Where(m => m.depth == search.depth);
+                }
                 if (!string.IsNullOrEmpty(search.sex))
                 {
                     results = results.Where(m => m.sex == search.sex);
                 }
+                if (!string.IsNullOrEmpty(search.headDirection))
+                {
+                    results = results.Where(m => m.headdirection == search.headDirection);
+                }
+                if (!string.IsNullOrEmpty(search.hairColor))
+                {
+                    results = results.Where(m => m.haircolor == search.hairColor);
+                }
+                if (!string.IsNullOrEmpty(search.faceBundle))
+                {
+                    if (search.faceBundle == "Y")
+                    {
+                        results = results.Where(m => m.facebundles == search.faceBundle);
+                    }
+                    else
+                    {
+                        results = results.Where(m => string.IsNullOrEmpty(m.facebundles));
+                    }
+                        
+                }
 
+                //put in Textile structure if time
+                // Also add Textile function if time
                 //might break it.  Not exactly sure how textile, connects ot mummy table yet
                 if (!string.IsNullOrEmpty(search.textileColor))
                 {
@@ -100,7 +156,7 @@ namespace INTEX2.Controllers
                            bmt.Textile != null &&
                            bmt.Textile.ColorTextile != null &&
                            bmt.Textile.ColorTextile.Color != null &&
-                           bmt.Textile.ColorTextile.Color.value.Contains(search.textileColor)));
+                           bmt.Textile.ColorTextile.Color.value.ToUpper().Contains(search.textileColor.ToUpper())));
                 }
 
             }
@@ -133,7 +189,6 @@ namespace INTEX2.Controllers
 
             //return View(y);
         }
-
         public IActionResult Burial_prediction()
         {
             return View();
