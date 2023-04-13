@@ -81,17 +81,43 @@ namespace INTEX2.Controllers
                 {
                     results = results.Where(m => m.id == search.burialId);
                 }
-
                 if (!string.IsNullOrEmpty(search.deathAge))
                 {
                     results = results.Where(m => m.ageatdeath == search.deathAge);
                 }
-
+                //if there's time, make it so that it's between this depth and this depth
+                if (!string.IsNullOrEmpty(search.depth))
+                {
+                    results = results.Where(m => m.depth == search.depth);
+                }
                 if (!string.IsNullOrEmpty(search.sex))
                 {
                     results = results.Where(m => m.sex == search.sex);
                 }
+                if (!string.IsNullOrEmpty(search.headDirection))
+                {
+                    results = results.Where(m => m.headdirection == search.headDirection);
+                }
+                if (!string.IsNullOrEmpty(search.hairColor))
+                {
+                    results = results.Where(m => m.haircolor == search.hairColor);
+                }
+                if (!string.IsNullOrEmpty(search.faceBundle))
+                {
+                    if (search.faceBundle == "Y")
+                    {
+                        results = results.Where(m => m.facebundles == search.faceBundle);
+                    }
+                    else
+                    {
+                        results = results.Where(m => string.IsNullOrEmpty(m.facebundles));
+                    }
+                        
+                }
+                
 
+                //put in Textile structure if time
+                // Also add Textile function if time
                 //might break it.  Not exactly sure how textile, connects ot mummy table yet
                 if (!string.IsNullOrEmpty(search.textileColor))
                 {
@@ -102,6 +128,7 @@ namespace INTEX2.Controllers
                            bmt.Textile.ColorTextile.Color != null &&
                            bmt.Textile.ColorTextile.Color.value.Contains(search.textileColor)));
                 }
+
 
             }
 

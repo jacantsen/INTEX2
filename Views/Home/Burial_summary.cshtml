@@ -8,6 +8,7 @@
 
 @model MummiesViewModel
 
+
 <div class="header-container-mum" >
     <h1 class="titular">Mummies</h1>
     <!--<button id="filterBtn" class="filter-btn-mum">Filter</button>-->
@@ -32,7 +33,7 @@
                 <div class="titular">
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
-                <br><br>
+                <br>
 
                 <label for="burialId">Burial ID</label>
                 <input class="filter-input-mum" type="number" id="burialId" name="burialId" >
@@ -40,26 +41,28 @@
  
                 <label for="sex">Sex</label><br>
                 <div class="toggle-switch">
-                    <div class="switch-option" id="male" onclick="toggleGender('male')">Male</div>
-                    <div class="switch-option" id="female" onclick="toggleGender('female')">Female</div>
+                    <div class="switch-option" id="male">Male</div>
+                    <div class="switch-option" id="female">Female</div>
                 </div>
                 <br>
                 <input type="hidden" id="sex" name="sex" />
+               
+                <label for="faceBundle">Presence of Face Bundle</label>
+                <div class="toggle-switch">
+                    <div class="switch-option" id="option-yes">Yes</div>
+                    <div class="switch-option" id="option-no">No</div>
+                </div>
+                <input type="hidden" id="faceBundle" name="faceBundle" />
+                <br><br>
 
                 <!--make it so that there is a between this and this setting-->
                 <label for="depth">Burial Depth</label>
                 <input class ="filter-input-mum" type="text" id="depth" name="depth" >
                 <br><br>
-
-                <label for="textileColor">Textile Color</label>
-                <input class="filter-input-mum" type="text" id="textileColor" name="textileColor" >
-                <br><br>
-                <label for="textileStructure">Textile Structure</label>
-                <input class="filter-input-mum" type="text" id="textileStructure" name="textileStructure" >
-                <br><br>
                 
                 <label for="deathAge">Age at Death</label>
                 <select class="filter-input-mum" id="deathAge" name="deathAge">
+                    <option value=""></option>
                     <option value="A">Adult (15+ years)</option>
                     <option value="C">Child (3-15 years)</option>
                     <option value="I">Infant (1-3 years)</option>
@@ -67,25 +70,40 @@
                     <option value="U">Unknown</option>
                 </select>
                 <br><br>
-
+                
                 <label for="headDirection">Head Direction</label>
-                <input class="filter-input-mum" type="text" id="headDirection" name="headDirection" >
+                <select class="filter-input-mum" id="headDirection" name="headDirection">
+                    <option value=""></option>
+                    <option value="E">East</option>
+                    <option value="W">West</option>
+                    <option value="N">North</option>
+                    <option value="S">South</option>
+                </select>
                 <br><br>
-                
-                <label for="textileFunction">Textile Function</label>
-                <input class="filter-input-mum" type="text" id="textileFunction" name="textileFunction" >
-                <br><br>
-                <label for="hairColor">Hair Color</label>
-                <input class="filter-input-mum" type="text" id="hairColor" name="hairColor" >
-                <br><br>
-                
-                <label for="faceBundle">Presence of Face Bundle</label>
-                <div class="toggle-switch">
-                    <div class="switch-option" id="option-yes" onclick="toggleSwitch('yes')">Yes</div>
-                    <div class="switch-option" id="option-no" onclick="toggleSwitch('no')">No</div>
-                </div>
-                <input type="hidden" id="faceBundle" name="faceBundle" />
 
+                <label for="hairColor">Hair Color</label>
+                <select class="filter-input-mum" id="hairColor" name="hairColor">
+                    <option value=""></option>
+                    <option value="B">Brown/Dark Brown/ Lt Brown</option>
+                    <option value="K">Black</option>
+                    <option value="A">Brown-Red</option>
+                    <option value="R">Red/Red-Bi</option>
+                    <option value="D">Blond</option>
+                    <option value="U">Unknown</option>
+                </select>
+                <br><br>
+
+                <!-- if time connect these three textile values-->
+                <label for="textileColor">Textile Color</label>
+                <input class="filter-input-mum" type="text" id="textileColor" name="textileColor">
+                <br><br>
+
+                <label for="textileStructure">Textile Structure</label>
+                <input class="filter-input-mum" type="text" id="textileStructure" name="textileStructure">
+                <br><br>
+
+                <label for="textileFunction">Textile Function</label>
+                <input class="filter-input-mum" type="text" id="textileFunction" name="textileFunction">
                 <br><br>
             </div>
         </form>
@@ -112,7 +130,22 @@
                 <tbody>
                     @foreach (var mummy in Model.Mummies)
                     {
+                        <!--Delete Modal-->
+                            <div id="id01" class="modal">
+                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">X</span>
+                                <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" class="modal-content">
+                                    <input type="hidden" name="mummy_id" id="mummy_id" />
+                                    <div class="container">
+                                        <h1>Delete Account</h1>
+                                        <p>Are you sure you want to delete this data? Action cannot be undone</p>
 
+                                        <div class="clearfix">
+                                                <button type="button" class="cancelbtn">Cancel</button>
+                                            <button type="submit" class="deletebtn">Delete</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                     <tr>
                         @if (User.IsInRole("Admin"))
                         {
@@ -120,10 +153,13 @@
                                 <a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a>
                             </td>
                             <td>
-                                    <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" onsubmit="return confirmDelete();">
+                                   @* <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" class="delete-form">
                                         <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    </form>*@
+                                    <button class="delete-modal-btn" data-mummy-id="@mummy.id">Delete</button>
                             </td>
+                            
+                        
                         }
                         @foreach (var prop in typeof(Mummy).GetProperties())
                         {
@@ -140,10 +176,6 @@
     </div>
 </div>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-
 
 <div page-model="@Model.PageInfo" page-action="Burial_summary" page-classes-enabled="true"
     page-class="btn" page-class-normal="btn-outline-dark"
@@ -151,9 +183,7 @@
 
 </div>
 
-<script>
-    function confirmDelete() {
-        return confirm('Are you sure you want to delete this record?');
-    }
-</script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 
