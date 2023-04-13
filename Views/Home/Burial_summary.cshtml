@@ -12,16 +12,15 @@
     <h1 class="titular">Mummies</h1>
     <!--<button id="filterBtn" class="filter-btn-mum">Filter</button>-->
     <div id="filterBtn" class="filter-btn-mum">Filter</div>
-    <div style="margin-left: auto;">
-        <a asp-action="ResetFilter" asp-controller="Home" class="btn btn-danger">Reset</a>
-    </div>
+    <a asp-action="ResetFilter" asp-controller="Home" class="filter-btn-mum" id="filterBtn">Reset</a>
     @if (User.IsInRole("Admin"))
     {
-        <a asp-controller="Home" asp-action="Add_mummy">Add a burial record here</a>
+        <a asp-controller="Home" asp-action="Add_mummy" class="filter-btn-mum" id="filterBtn" style="width: 200px !important">Add record</a>
     }
 </div>
 
 <div id="hideBtn" class="hide-btn-mum">Hide Filter Bar</div>
+<a asp-action="ResetFilter" asp-controller="Home" class="hide-btn-mum" id="hideBtn">Reset</a>
 <div class="containment">
 
     <div id="sidebar" class="left-column-mum">
@@ -160,6 +159,14 @@
                             <td>
                                 <a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a>
                             </td>
+                                <!-- *****************-->
+                                <td>
+                                    @foreach (var burialMainTextile in mummy.BurialMain_Textile)
+                                    {
+                                        @burialMainTextile.textileid <br />
+                                    }
+                                </td>
+
                             <td>
                                    @* <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" class="delete-form">
                                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -172,11 +179,29 @@
                         <td>
                                 <a asp-controller="Home" asp-action="_MoreInfoPartial" asp-route-mummy_id="@mummy.id" data-toggle="modal" data-target="#mummyModal" class="details-link">Details</a>
                             </td>
-                        @foreach (var prop in typeof(Mummy).GetProperties())
-                        {
-                            <td>@prop.GetValue(mummy)</td>
 
-                        }
+                            @foreach (var prop in typeof(Mummy).GetProperties())
+                            {
+                                bool displayed = false;
+                                if (prop == typeof(Mummy).GetProperty("BurialMain_Textile"))
+                                {
+                                    if (mummy.BurialMain_Textile != null)
+                                    {
+                                        int textileCount = mummy.BurialMain_Textile.Count;
+                                        <td>@textileCount @("textiles")</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    displayed = true;
+                                }
+
+                                if (!displayed)
+                                {
+                                    <td>@prop.GetValue(mummy)</td>
+                                }
+                            }
 
 
                         </tr>
