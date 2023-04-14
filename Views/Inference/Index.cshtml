@@ -2,41 +2,36 @@
     ViewData["Title"] = "Burial Prediction";
 }
 
-@*<style>
-        input[type="radio"] {
-            margin-right: 0.5rem;
-        }
-    </style>*@
-
 @model MummyData
 
-<div style="text-align: center; font-size: 1.5rem; margin: 0 auto;">
+<div class="text-center">
     <h1>Burial Prediction</h1>
-    <p>Welcome to our predictive mummy calculator! Our machine learning model has been trained to predict the orientation of mummies based on various features,
+    <p>
+        Welcome to our predictive mummy calculator! Our machine learning model has been trained to predict the orientation of mummies based on various features,
         such as size, location, and the age of the mummy. Whether making a prediction, or filling in missing information, the
         calculator can provide valuable information for the user.
         <br />
         This calculator is in an early stage, look for more features and capabilities to come!
-      </p>
+    </p>
 </div>
-<hr style="border: 1px solid black;">
+<hr>
 
-<form id="burial-form" style="max-width: 800px; margin: 0 auto;" method="post" action="/Inference/Index">
-    <h3>Calculator</h3>
-    <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
-        <label style="font-weight: bold;" asp-for="squarenorthsouth">North South Coordinate</label>
-        <input type="number" asp-for="squarenorthsouth" step="any" placeholder="Enter North South Coordinate" style="padding: 0.5rem;">
+<form id="burial-form" class="mx-auto my-4" method="post" action="/Inference/Index">
+    <h3 class="mb-4">Calculator</h3>
+    <div class="form-group">
+        <label class="font-weight-bold" asp-for="squarenorthsouth">North South Coordinate</label>
+        <input type="number" asp-for="squarenorthsouth" step="any" placeholder="Enter North South Coordinate" class="form-control">
     </div>
     <div class="form-group">
-        <label asp-for="squareeastwest" class="font-weight-bold">East West Coordinate</label>
+        <label class="font-weight-bold" asp-for="squareeastwest">East West Coordinate</label>
         <input type="number" asp-for="squareeastwest" step="any" placeholder="Enter East West Coordinate" class="form-control">
     </div>
     <div class="form-group">
-        <label asp-for="depth" class="font-weight-bold">Burial Depth</label>
+        <label class="font-weight-bold" asp-for="depth">Burial Depth</label>
         <input type="number" asp-for="depth" step="any" placeholder="Enter Burial Depth" class="form-control">
     </div>
     <div class="form-group">
-        <label asp-for="length" class="font-weight-bold">Mummy Length</label>
+        <label class="font-weight-bold" asp-for="length">Mummy Length</label>
         <input type="number" asp-for="length" step="any" placeholder="Enter Mummy Length" class="form-control">
     </div>
     <div class="form-group">
