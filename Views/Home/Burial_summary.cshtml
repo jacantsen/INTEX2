@@ -159,13 +159,6 @@
                             <td>
                                 <a asp-controller="Home" asp-action="Edit_burialmain" asp-route-mummy_id="@mummy.id">Edit</a>
                             </td>
-                                <!-- *****************-->
-                                <td>
-                                    @foreach (var burialMainTextile in mummy.BurialMain_Textile)
-                                    {
-                                        @burialMainTextile.textileid <br />
-                                    }
-                                </td>
 
                             <td>
                                    @* <form method="post" asp-controller="Home" asp-action="Delete_burialmain" asp-route-mummy_id="@mummy.id" class="delete-form">
