@@ -5,4 +5,90 @@
     ViewData["Title"] = "Burial Analysis";
 
 }
-<div>Unsupervised analysis will go here</div>
+
+<head>
+    <title>My Page</title>
+    <style>
+        /* Center images */
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 30%;
+        }
+        /* Separate sections with some spacing */
+        section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Question</h2>
+        <p>
+            What changes in burial practice happened over time?
+        </p>
+    </section>
+    <section>
+        <h2>
+            Gathering and Prepping Data
+        </h2>
+        <p>
+            We organized the database, then selected the most effective features and imputed the data
+        </p>
+        <img src="~/img/databeforeimputing_1_800x.png" />
+        <img src="~/img/dataafterimputing_800x.png" />
+        <img src="~/img/correlationmtx.png" alt="Heatmap" />
+    </section>
+    <section>
+        <h2>Analyzing Data</h2>
+        <p>We then clustered the data using an unsupervised algorithm</p>
+        <img src="~/img/dendrogramclustering.png" alt="Dendrogram" />
+    </section>
+    <section>
+        <h2>Interpreting Results</h2>
+        <p>
+            When we came to interpreting results, we had an unfortunate realization. 
+            In order to get a proper model, we had to remove much of the data linked to culture, 
+            which was the original focus and question we had. This led us to different results.
+            Although dissapointing, the analysis was not a complete failure
+        </p>
+        <img src="~/img/headdirectiondepth.png" alt="Scatter1" />
+        <img src="~/img/normaladultsubadultnormal.png" alt="Scatter2" />
+        <img src="~/img/depthlocation.png" alt="Scatter3" />
+        <p>
+            These scatter plots reveal a few interesting discoveries
+            In the first two scatter plots, the way the data was clustered heavily favored location and depth.
+            With this in mind, we can see that in certain grid locations, the mummies are deeper in the ground.
+            Also, we see that location and depth affects how many mummies are found of either adults or children.
+            Finally, in the third chart where depth play a major role, we see head direction changed based on depth,
+            indicating that there were periods of time where some were buried East, as opposed to the more common Western orientation
+        </p>
+    </section>
+    <section>
+        <h2>Conclusions</h2>
+        <p>As we said before, our results didn't get us where we wanted. However the potential is there. Given the correct data
+            we could analyze all aspects of the mummies, including culture, anatomy, demographics, or language, perhaps brining to light new patterns and discoveries.
+       
+        </p>
+    </section>
+</body>
+<div>
+    Data Analysis of Burial Practices
+</div>
+
+
+
+
+
+
+
+
+@*Where we want to go with it:
+
+Right now the clusters are formed primarily on location
+
+With more data, we could cluster more based on cultural values.
+With these analytics
+
+Although we weren't able to get many cultural clusterings
+This has immense potential given the right data*@
